@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel del gestor · Coto Juan Cano</title>
+<link rel="icon" href="img/icono-192.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<!-- Acceso -->
+<div id="acceso-gestor" hidden>
+  <div class="marca">Coto Juan Cano</div>
+  <h1 style="margin:6px 0 16px">Panel del gestor</h1>
+  <label for="email">Email</label>
+  <input id="email" type="email" autocomplete="username">
+  <label for="clave">Contraseña</label>
+  <input id="clave" type="password" autocomplete="current-password">
+  <p id="error-acceso" class="error" role="alert"></p>
+  <button id="btn-acceder" class="btn">Entrar</button>
+</div>
+
+<!-- Panel -->
+<aside id="lateral" hidden>
+  <div class="marca">Coto Juan Cano</div>
+  <h1>Panel del gestor</h1>
+  <div class="botones">
+    <a class="mini claro" href="./" target="_blank" rel="noopener" style="text-decoration:none">Abrir app del cazador</a>
+    <button class="mini claro" id="btn-salir">Salir</button>
+  </div>
+
+  <section>
+    <h2>Socios <small id="n-socios"></small></h2>
+    <div id="lista-socios" class="lista"></div>
+    <div class="fila">
+      <div><label for="socio-nombre">Nombre</label><input id="socio-nombre"></div>
+      <div><label for="socio-tel">Teléfono</label><input id="socio-tel" inputmode="tel"></div>
+    </div>
+    <div class="botones"><button class="mini" id="btn-socio">Añadir socio</button></div>
+    <p class="ayuda">Cada socio entra en la app con su código. «WhatsApp» le manda el enlace y el código. «Nuevo código» desconecta su móvil actual.</p>
+  </section>
+
+  <section>
+    <h2>Parcelas <small id="n-parcelas"></small></h2>
+    <div class="botones">
+      <button class="mini" id="btn-catastro">Cargar las 27 parcelas del Catastro</button>
+      <button class="mini claro" id="btn-archivo">Importar del zonificador</button>
+    </div>
+    <input type="file" id="archivo" accept=".json,.geojson" hidden>
+    <div id="registro" aria-live="polite"></div>
+  </section>
+
+  <section>
+    <h2>Zonas <small id="n-zonas"></small></h2>
+    <div class="fila">
+      <div><label for="zona-tipo">Tipo</label><select id="zona-tipo"></select></div>
+      <div><label for="zona-nombre">Nombre (opcional)</label><input id="zona-nombre" placeholder="Ej.: junto a la casa"></div>
+    </div>
+    <div class="botones"><button class="mini" id="btn-zona">Dibujar zona en el mapa</button></div>
+    <p class="ayuda">Pulsa en cada esquina de la zona y termina pulsando en el primer punto.</p>
+    <div id="lista-zonas" class="lista"></div>
+  </section>
+
+  <section>
+    <h2>Puntos <small id="n-puntos"></small></h2>
+    <div class="fila">
+      <div><label for="punto-tipo">Tipo</label><select id="punto-tipo"></select></div>
+      <div><label for="punto-nombre">Nombre (opcional)</label><input id="punto-nombre" placeholder="Ej.: bebedero del pinar"></div>
+    </div>
+    <label for="punto-nota">Nota (opcional)</label><input id="punto-nota">
+    <div class="botones"><button class="mini" id="btn-punto">Añadir punto: pulsa en el mapa</button></div>
+    <p class="ayuda">Puedes arrastrar un punto para moverlo.</p>
+    <div id="lista-puntos" class="lista"></div>
+  </section>
+</aside>
+<div id="mapa-panel" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/comun.js"></script>
+<script src="js/catastro.js"></script>
+<script src="js/gestor.js"></script>
+</body>
+</html>

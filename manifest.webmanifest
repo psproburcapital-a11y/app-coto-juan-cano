@@ -1,0 +1,17 @@
+{
+  "name": "Coto Juan Cano",
+  "short_name": "Coto JC",
+  "description": "App del cazador del Coto Juan Cano",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F3F1EA",
+  "theme_color": "#16201A",
+  "icons": [
+    { "src": "img/icono-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/icono-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "img/icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
