@@ -18,9 +18,12 @@
 .fila-botones .btn{font-size:18px;line-height:1.15}
 #toast{position:absolute;left:12px;right:12px;bottom:calc(150px + env(safe-area-inset-bottom));z-index:1100;background:var(--tinta);color:#fff;
   padding:14px 16px;border-radius:12px;font-size:18px;font-weight:700;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
-#hoja{position:absolute;left:0;right:0;bottom:0;z-index:1200;background:var(--fondo);border-radius:18px 18px 0 0;
+#hoja,.hoja-abajo{position:absolute;left:0;right:0;bottom:0;z-index:1200;background:var(--fondo);border-radius:18px 18px 0 0;
   padding:18px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:0 -6px 20px rgba(0,0,0,.35);max-height:92%;overflow:auto}
-#hoja h2{margin:0 0 6px;font-size:22px}
+#hoja h2,.hoja-abajo h2{margin:0 0 6px;font-size:22px}
+.hoja-abajo p{color:var(--tinta);margin:0 0 14px}
+.opcion{display:flex;gap:12px;align-items:center;font-size:17px;font-weight:600;margin:14px 0 8px}
+.opcion input{width:28px;height:28px;flex:none}
 #hoja-pos{margin:0 0 12px;font-weight:600;color:var(--tinta)}
 #hoja-tipos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
 .tipo{display:flex;flex-direction:column;align-items:center;gap:4px;min-height:84px;justify-content:center;border:3px solid var(--linea);
@@ -55,8 +58,9 @@
     <ul>
       <li><b>Qué guardamos:</b> tu nombre, tu teléfono, las capturas y los tiros que registres.</li>
       <li><b>Tu ubicación:</b> el GPS solo se usa mientras tengas una <b>jornada activa</b>. Al terminar la jornada se apaga.</li>
+      <li><b>Ver a los compañeros (voluntario):</b> al empezar cada jornada eliges si compartes tu posición. Si la compartes, la ven el gestor y los socios que también la compartan, solo durante la jornada. Al terminarla se borra y no se guarda ningún recorrido.</li>
       <li><b>Posición de los tiros:</b> tú decides si se guarda o no.</li>
-      <li><b>Quién lo ve:</b> solo el gestor del coto. No se vende ni se cede a nadie.</li>
+      <li><b>Quién lo ve:</b> el gestor del coto (y tu posición, los compañeros si decides compartirla). No se vende ni se cede a nadie.</li>
       <li><b>Tus derechos:</b> puedes pedir al gestor ver, corregir o borrar tus datos en cualquier momento.</li>
     </ul>
   </div>
@@ -86,6 +90,16 @@
     </div>
   </div>
   <div id="toast" role="status" hidden></div>
+  <div id="hoja-jornada" class="hoja-abajo" hidden>
+    <h2>▶ Empezar jornada</h2>
+    <p>¿Quieres que los compañeros vean dónde estás? Solo verás a los demás si tú también compartes.</p>
+    <div class="pila">
+      <button id="jornada-compartir" class="btn">👥 Sí, compartir y ver a los demás</button>
+      <button id="jornada-solo" class="btn claro">🔒 No, solo para mí</button>
+    </div>
+    <label class="opcion"><input type="checkbox" id="opc-pantalla"> Mantener la pantalla encendida (gasta más batería)</label>
+    <button id="jornada-cancelar" class="btn claro" style="min-height:52px;margin-top:4px">Cancelar</button>
+  </div>
   <div id="hoja" hidden>
     <h2>📍 Marcar punto aquí</h2>
     <p id="hoja-pos"></p>
@@ -103,6 +117,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="comun-v2.js"></script>
-<script src="cazador-v2.js"></script>
+<script src="companeros.js"></script>
+<script src="cazador-v3.js"></script>
 </body>
 </html>
