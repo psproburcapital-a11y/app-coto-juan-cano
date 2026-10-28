@@ -1,17 +1,30 @@
 {
-  "name": "Coto Juan Cano",
-  "short_name": "Coto JC",
-  "description": "App del cazador del Coto Juan Cano",
+  "name": "Cotea",
+  "short_name": "Cotea",
+  "description": "Cotea · Tu coto en el móvil",
   "lang": "es",
   "start_url": "app.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#F3F1EA",
-  "theme_color": "#16201A",
+  "theme_color": "#1E6B30",
   "icons": [
-    { "src": "icono-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icono-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icono-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icono-cotea-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icono-cotea-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icono-cotea-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
