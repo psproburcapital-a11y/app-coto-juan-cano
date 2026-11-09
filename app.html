@@ -33,6 +33,18 @@
 #hoja-nombre{width:100%;font-size:18px;padding:12px;border:2px solid var(--linea);border-radius:12px;margin-bottom:6px}
 #btn-centrar{bottom:calc(160px + env(safe-area-inset-bottom))}
 #btn-leyenda{bottom:calc(230px + env(safe-area-inset-bottom))}
+#btn-filtro{bottom:calc(300px + env(safe-area-inset-bottom));font-size:34px;font-weight:800;line-height:1}
+#btn-filtro.activo{background:var(--ocre);color:#fff}
+#filtro{position:absolute;right:82px;left:12px;max-width:340px;margin-left:auto;bottom:calc(160px + env(safe-area-inset-bottom));z-index:1100;background:#fff;border-radius:14px;
+  padding:12px 14px;box-shadow:0 2px 14px rgba(0,0,0,.35);max-height:62vh;overflow:auto}
+.filtro-cabecera{display:flex;justify-content:space-between;align-items:center;font-size:18px;margin-bottom:6px}
+.filtro-cabecera button{border:none;background:none;font-size:22px;width:44px;height:44px}
+.filtro-tipo{display:flex;align-items:center;gap:12px;min-height:48px;font-size:18px;border-bottom:1px solid var(--linea)}
+.filtro-tipo input{width:26px;height:26px;flex:none;accent-color:var(--pino)}
+.filtro-icono{font-size:24px;width:30px;text-align:center}
+.filtro-nombre small{color:var(--suave)}
+.filtro-botones{display:flex;gap:8px;margin-top:10px}
+.filtro-botones button{flex:1;min-height:44px;border-radius:10px;border:2px solid var(--linea);background:#fff;font-weight:700}
 #leyenda{bottom:calc(160px + env(safe-area-inset-bottom))}
 </style>
 </head>
@@ -58,7 +70,7 @@
     <p>El responsable de tus datos es el <b>Coto Juan Cano</b>, a través de su gestor. Se usan solo para gestionar el coto y para esta prueba piloto.</p>
     <ul>
       <li><b>Qué guardamos:</b> tu nombre, tu teléfono, las capturas y los tiros que registres.</li>
-      <li><b>Tu ubicación:</b> el GPS solo se usa mientras tengas una <b>jornada activa</b>. Al terminar la jornada se apaga.</li>
+      <li><b>Tu ubicación:</b> el GPS se enciende mientras tengas la app abierta, para mostrarte en el mapa y avisarte de las zonas. Esa posición se queda en tu móvil: no se envía a nadie salvo que compartas tu jornada.</li>
       <li><b>Ver a los compañeros (voluntario):</b> al empezar cada jornada eliges si compartes tu posición. Si la compartes, la ven el gestor y los socios que también la compartan, solo durante la jornada. Al terminarla se borra y no se guarda ningún recorrido.</li>
       <li><b>Posición de los tiros:</b> tú decides si se guarda o no.</li>
       <li><b>Quién lo ve:</b> el gestor del coto (y tu posición, los compañeros si decides compartirla). No se vende ni se cede a nadie.</li>
@@ -80,9 +92,14 @@
   </div>
   <div id="mapa"></div>
   <div id="alerta" role="alert" hidden></div>
+  <button id="btn-filtro" class="flotante" aria-label="Elegir qué puntos se ven">⋮</button>
   <button id="btn-leyenda" class="flotante" aria-label="Ver leyenda">🗺️</button>
   <button id="btn-centrar" class="flotante" aria-label="Centrar en mi posición" hidden>🎯</button>
   <div id="leyenda" hidden></div>
+  <div id="filtro" hidden>
+    <div class="filtro-cabecera"><b>Qué puntos ver</b><button type="button" id="filtro-cerrar" aria-label="Cerrar">✕</button></div>
+    <div id="filtro-lista"></div>
+  </div>
   <div id="controles">
     <div id="estado-gps">GPS apagado</div>
     <div class="fila-botones">
@@ -98,7 +115,7 @@
       <button id="jornada-compartir" class="btn">👥 Sí, compartir y ver a los demás</button>
       <button id="jornada-solo" class="btn claro">🔒 No, solo para mí</button>
     </div>
-    <label class="opcion"><input type="checkbox" id="opc-pantalla"> Mantener la pantalla encendida (gasta más batería)</label>
+    <label class="opcion"><input type="checkbox" id="opc-pantalla" checked> Mantener la pantalla encendida durante la jornada (recomendado; gasta más batería)</label>
     <button id="jornada-cancelar" class="btn claro" style="min-height:52px;margin-top:4px">Cancelar</button>
   </div>
   <div id="hoja" hidden>
@@ -117,8 +134,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="comun-v3.js"></script>
+<script src="comun-v5.js"></script>
 <script src="companeros.js"></script>
-<script src="cazador-v5.js"></script>
+<script src="cazador-v7.js"></script>
 </body>
 </html>

@@ -8,6 +8,15 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css">
 <link rel="stylesheet" href="app.css">
+<style>
+.filtro-det{margin:10px 0;border:1px solid var(--linea);border-radius:8px;padding:6px 10px}
+.filtro-det summary{cursor:pointer;font-weight:600;color:var(--pino)}
+#filtro-panel{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;margin-top:6px}
+.filtro-tipo{display:flex;align-items:center;gap:8px;font-size:14px;padding:4px 0}
+.filtro-tipo input{width:18px;height:18px;accent-color:var(--pino)}
+.filtro-botones{grid-column:1/3;display:flex;gap:8px;margin-top:4px}
+.filtro-botones button{border:1px solid var(--pino);background:#fff;color:var(--pino);border-radius:6px;padding:4px 10px;font-size:13px}
+</style>
 </head>
 <body>
 
@@ -81,6 +90,7 @@
     <label for="punto-nota">Nota (opcional)</label><input id="punto-nota">
     <div class="botones"><button class="mini" id="btn-punto">Añadir puntos: pulsa en el mapa</button></div>
     <p class="ayuda" id="ayuda-punto">Puedes arrastrar un punto para moverlo.</p>
+    <details class="filtro-det"><summary>⋮ Qué puntos se ven en el mapa</summary><div id="filtro-panel"></div></details>
     <div id="lista-puntos" class="lista"></div>
   </section>
 </aside>
@@ -91,9 +101,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.2/proj4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="comun-v3.js"></script>
+<script src="comun-v5.js"></script>
 <script src="catastro-v2.js"></script>
 <script src="companeros.js"></script>
-<script src="panel-v6.js"></script>
+<script src="panel-v7.js"></script>
 </body>
 </html>
