@@ -11,6 +11,14 @@
 <style>
 .filtro-det{margin:10px 0;border:1px solid var(--linea);border-radius:8px;padding:6px 10px}
 .filtro-det summary{cursor:pointer;font-weight:600;color:var(--pino)}
+.aviso-legal{background:#FFF6E0;border-radius:6px;padding:8px 10px;font-size:13px;margin:0 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--linea);border-radius:16px;padding:3px 10px;font-size:14px;background:#FAFAF7;color:var(--tinta)!important;margin:0!important}
+.chip input{width:auto!important}
+.esp{border:1px solid var(--linea);border-radius:8px;padding:8px 10px;margin-bottom:8px}
+.esp-cab{display:flex;justify-content:space-between;align-items:center}
+.esp-cab label{display:flex;align-items:center;gap:6px;color:var(--tinta)!important;font-size:15px!important;margin:0!important}
+.esp-cab input{width:auto!important}
 #filtro-panel{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px;margin-top:6px}
 .filtro-tipo{display:flex;align-items:center;gap:8px;font-size:14px;padding:4px 0}
 .filtro-tipo input{width:18px;height:18px;accent-color:var(--pino)}
@@ -61,6 +69,34 @@
   </section>
 
   <section>
+    <h2>Temporada y días de caza</h2>
+    <p class="aviso-legal">⚠️ Comprueba fechas, días y cupos en la <b>Orden de Vedas de Castilla-La Mancha 2026-2027</b> y en vuestro Plan Técnico. La app no los decide.</p>
+    <label for="t-nombre">Nombre</label><input id="t-nombre">
+    <div class="fila"><div><label for="t-inicio">Empieza</label><input type="date" id="t-inicio"></div><div><label for="t-fin">Termina</label><input type="date" id="t-fin"></div></div>
+    <label>Días de caza de la semana</label><div id="t-dias" class="chips"></div>
+    <label>Festivos que también se caza</label><div id="t-festivos" class="chips"></div>
+    <div class="fila"><div><input type="date" id="t-festivo" aria-label="Fecha del festivo"></div><div style="flex:none"><button class="mini claro" id="t-add-festivo">Añadir festivo</button></div></div>
+    <label for="t-aviso">Aviso para los socios (sale en «Hoy»)</label><input id="t-aviso" placeholder="Ej.: este domingo solo se caza la zona norte">
+    <div class="botones"><button class="mini" id="t-guardar">Guardar temporada</button><span class="ok" id="t-ok" hidden>✓ Guardado</span></div>
+  </section>
+
+  <section>
+    <h2>Especies</h2>
+    <div id="lista-especies"></div>
+    <div class="fila"><div><label for="esp-nombre">Nueva especie</label><input id="esp-nombre" placeholder="Ej.: Liebre"></div><div style="max-width:80px"><label for="esp-icono">Icono</label><input id="esp-icono" placeholder="🐇"></div></div>
+    <div class="botones"><button class="mini claro" id="esp-add">Añadir especie</button></div>
+  </section>
+
+  <section>
+    <h2>Calendario de eventos</h2>
+    <div class="fila"><div><label for="ev-fecha">Fecha</label><input type="date" id="ev-fecha"></div><div><label for="ev-tipo">Tipo</label><select id="ev-tipo"></select></div></div>
+    <label for="ev-titulo">Título</label><input id="ev-titulo" placeholder="Ej.: Suelta de perdiz en la zona norte">
+    <label for="ev-notas">Notas (opcional)</label><input id="ev-notas">
+    <div class="botones"><button class="mini" id="ev-add">Añadir al calendario</button></div>
+    <div id="lista-eventos" class="lista"></div>
+  </section>
+
+  <section>
     <h2>Parcelas <small id="n-parcelas"></small></h2>
     <div class="botones">
       <button class="mini" id="btn-catastro">Cargar las 27 parcelas del Catastro</button>
@@ -104,6 +140,7 @@
 <script src="comun-v6.js"></script>
 <script src="catastro-v2.js"></script>
 <script src="companeros.js"></script>
-<script src="panel-v7.js"></script>
+<script src="temporada.js"></script>
+<script src="panel-v8.js"></script>
 </body>
 </html>

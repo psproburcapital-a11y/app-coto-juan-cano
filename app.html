@@ -33,6 +33,22 @@
 #hoja-nombre{width:100%;font-size:18px;padding:12px;border:2px solid var(--linea);border-radius:12px;margin-bottom:6px}
 #btn-centrar{bottom:calc(160px + env(safe-area-inset-bottom))}
 #btn-leyenda{bottom:calc(230px + env(safe-area-inset-bottom))}
+#btn-hoy{bottom:calc(370px + env(safe-area-inset-bottom))}
+.hoy-fecha{font-size:16px;color:var(--suave);margin-bottom:6px}
+.hoy-estado{font-size:22px;font-weight:800;padding:12px 14px;border-radius:12px;margin-bottom:10px}
+.hoy-estado small{display:block;font-size:15px;font-weight:600;margin-top:2px}
+.hoy-estado.si{background:#E3EFE4;color:var(--pino-o)}
+.hoy-estado.no{background:#EEE;color:#444}
+.hoy-aviso{background:#FFF6E0;border-radius:10px;padding:10px 12px;font-weight:600;margin-bottom:8px}
+#hoja-hoy h3{font-size:17px;margin:14px 0 6px}
+.hoy-esp{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--linea)}
+.hoy-esp small{display:block;color:var(--suave);font-size:14px}
+.hoy-ico{font-size:26px;text-align:center}
+.et{font-size:13px;font-weight:700;border-radius:20px;padding:3px 10px;white-space:nowrap}
+.et.verde{background:#E3EFE4;color:var(--pino-o)} .et.rojo{background:#FBE3E1;color:var(--rojo)} .et.gris{background:#EEE;color:#555}
+.hoy-dia{padding:8px 0;border-bottom:1px solid var(--linea);text-transform:capitalize}
+.hoy-ev{font-size:15px;padding:3px 0 0 6px;text-transform:none}
+.hoy-ev small{color:var(--suave)}
 #btn-filtro{bottom:calc(300px + env(safe-area-inset-bottom));font-size:34px;font-weight:800;line-height:1}
 #btn-filtro.activo{background:var(--ocre);color:#fff}
 #filtro{position:absolute;right:82px;left:12px;max-width:340px;margin-left:auto;bottom:calc(160px + env(safe-area-inset-bottom));z-index:1100;background:#fff;border-radius:14px;
@@ -92,10 +108,15 @@
   </div>
   <div id="mapa"></div>
   <div id="alerta" role="alert" hidden></div>
+  <button id="btn-hoy" class="flotante" aria-label="Hoy se puede cazar y calendario">📅</button>
   <button id="btn-filtro" class="flotante" aria-label="Elegir qué puntos se ven">⋮</button>
   <button id="btn-leyenda" class="flotante" aria-label="Ver leyenda">🗺️</button>
   <button id="btn-centrar" class="flotante" aria-label="Centrar en mi posición" hidden>🎯</button>
   <div id="leyenda" hidden></div>
+  <div id="hoja-hoy" class="hoja-abajo" hidden>
+    <div class="filtro-cabecera"><b style="font-size:22px">📅 Hoy en el coto</b><button type="button" id="hoy-cerrar" aria-label="Cerrar">✕</button></div>
+    <div id="hoy-contenido"></div>
+  </div>
   <div id="filtro" hidden>
     <div class="filtro-cabecera"><b>Qué puntos ver</b><button type="button" id="filtro-cerrar" aria-label="Cerrar">✕</button></div>
     <div id="filtro-lista"></div>
@@ -136,6 +157,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="comun-v6.js"></script>
 <script src="companeros.js"></script>
-<script src="cazador-v7.js"></script>
+<script src="temporada.js"></script>
+<script src="cazador-v8.js"></script>
 </body>
 </html>
